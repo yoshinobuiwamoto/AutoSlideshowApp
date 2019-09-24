@@ -66,7 +66,8 @@ class MainActivity : AppCompatActivity() {
         //
         auto_stop_button.setOnClickListener {
             if (AutoStopFlag == "STOP") {
-                AutoStopFlag = "AUTO"               // 再生ボタンをおした状態にする
+                AutoStopFlag = "AUTO"                // 再生ボタンをおした状態にする
+                auto_stop_button.text = "停止"         // 再生中なのでボタン表示は「停止」
                 previous_button.isClickable = false   // 戻るボタンを無効にする
                 next_button.isClickable = false       // 進むボタンを無効にするの
 
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
                 }
             } else {                                 // すでに再生をしている状態なので停止要求とみなす
                 AutoStopFlag = "STOP"            // 停止状態にする
+                auto_stop_button.text = "再生"         // 停止中なのでボタン表示は「再生」
                 previous_button.isClickable = true    // 戻るボタンを有効にする
                 next_button.isClickable = true        // 進むボタンを有効にする
                 if (mTimer != null){
@@ -101,6 +103,9 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
 
+    }
+    override fun onStop(){
+        super.onStop()
     }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
