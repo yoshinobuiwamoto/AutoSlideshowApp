@@ -86,13 +86,22 @@ class MainActivity : AppCompatActivity() {
                 AutoStopFlag = "STOP"            // 停止状態にする
                 previous_button.isClickable = true    // 戻るボタンを有効にする
                 next_button.isClickable = true        // 進むボタンを有効にする
+                if (mTimer != null){
+                    mTimer!!.cancel()
+                    mTimer = null
+                }
+                // Activity破棄
+
 
             }
 
         }
 
     }
+    override fun onDestroy() {
+        super.onDestroy()
 
+    }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             PERMISSIONS_REQUEST_CODE ->
